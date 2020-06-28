@@ -4,56 +4,13 @@ GhostNet: More Features from Cheap Operations. CVPR 2020. [[arXiv]](https://arxi
 
 By Kai Han, Yunhe Wang, Qi Tian, Jianyuan Guo, Chunjing Xu, Chang Xu.
 
-- **Approach**
+首先创建文件夹data，models；
+将检查点文件.pth放入models文件夹（也可以自己从头训练）
 
-<div align="center">
-   <img src="../fig/ghost_module.png" width="720">
-</div>
 
-- **Performance**
+训练100epoch：
+训练loss大约0.17左右，正确率大约93%
 
-GhostNet beats other SOTA lightweight CNNs such as **MobileNetV3** and **FBNet**.
-
-<div align="center">
-   <img src="../fig/flops_latency.png" width="720">
-</div>
-
-## Implementation
-
-This folder provides the PyTorch code and pretrained model of GhostNet on ImageNet.
-
-`ghostnet.py` implemented `GhostModule` and `GhostNet`.
-
-### Requirements
-The code was verified on Python3.6, PyTorch-1.0+.
-
-### Usage
-Run `python validate.py --eval --data=/path/to/imagenet/dir/` to evaluate on `val` set.
-
-You'll get the accuracy: top-1 acc=`0.7398` and top-5 acc=`0.9146` with only `142M` Flops (or say MAdds).
-
-### Data Preparation
-ImageNet data dir should have the following structure, and `val` and `caffe_ilsvrc12` subdirs are essential:
-```
-dir/
-  train/
-    ...
-  val/
-    n01440764/
-      ILSVRC2012_val_00000293.JPEG
-      ...
-    ...
-  caffe_ilsvrc12/
-    ...
-```
-caffe_ilsvrc12 data can be downloaded from http://dl.caffe.berkeleyvision.org/caffe_ilsvrc12.tar.gz
-
-## Citation
-```
-@inproceedings{ghostnet,
-  title={GhostNet: More Features from Cheap Operations},
-  author={Han, Kai and Wang, Yunhe and Tian, Qi and Guo, Jianyuan and Xu, Chunjing and Xu, Chang},
-  booktitle={CVPR},
-  year={2020}
-}
-```
+测试结果：
+('loss', 0.8097940278053284), ('top1', 80.25), ('top5', 98.92)]
+没有文章所介绍的效果好，可能与训练技巧以及epoch数量有关
